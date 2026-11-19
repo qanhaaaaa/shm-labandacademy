@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>
+   SHM Lab • Phòng thí nghiệm dao động
+  </title>
+<link href="style.css" rel="stylesheet"/><link href="academy.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-hero">
+<div class="hero-copy">
+<div class="pill hero-eyebrow">✦ SHM LAB / PHÒNG THÍ NGHIỆM SỐ</div>
+<div class="hero-titleline">ROBERT HOOKE · 1678 · ĐỊNH LUẬT HOOKE</div>
+<h1 class="hooke-quote-title">“Ut tensio, <span>sic vis.</span>”</h1>
+<p class="hooke-english">“As the extension, so the force.”</p>
+<blockquote class="hooke-vietnamese">“Độ biến dạng tăng bao nhiêu, lực đàn hồi tăng tương ứng bấy nhiêu.”</blockquote>
+<p class="hooke-attribution">— Robert Hooke, 1678 <span>· Nguyên lý nền tảng của định luật Hooke</span></p>
+<div class="hero-features"><span>✿ THỰC NGHIỆM</span><span>♡ MÔ PHỎNG</span><span>✦ KHOA HỌC STEM</span></div>
+<div class="hero-actions"><button class="hero-cta" id="heroStart" type="button">BẮT ĐẦU ĐO  ↗</button><button class="hero-secondary" id="heroSim" type="button">✦ KHÁM PHÁ MÔ PHỎNG</button></div>
+</div>
+<div aria-hidden="true" class="hero-art">
+<div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+<svg class="spring-mascot" viewbox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
+<defs><lineargradient id="bodyShade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffdc81"></stop><stop offset="1" stop-color="#ffad65"></stop></lineargradient><lineargradient id="springShade" x1="0" x2="1"><stop stop-color="#ad9afa"></stop><stop offset="1" stop-color="#f38cb9"></stop></lineargradient><filter height="180%" id="softShadow" width="180%" x="-40%" y="-40%"><fedropshadow dx="0" dy="13" flood-color="#a579ae" flood-opacity=".2" stddeviation="12"></fedropshadow></filter></defs>
+<ellipse cx="209" cy="292" fill="#e7dafa" opacity=".8" rx="109" ry="19"></ellipse>
+<path d="M131 51H271" stroke="#8c72ac" stroke-linecap="round" stroke-width="15"></path>
+<path d="M200 51V69 L167 82 L234 99 L167 115 L234 132 L167 149 L234 166 L167 183 L234 200 L200 214" fill="none" stroke="url(#springShade)" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"></path>
+<g filter="url(#softShadow)"><rect fill="url(#bodyShade)" height="88" rx="40" stroke="#f49b82" stroke-width="5" width="166" x="118" y="206"></rect><ellipse cx="169" cy="247" fill="#49344f" rx="7" ry="10"></ellipse><ellipse cx="236" cy="247" fill="#49344f" rx="7" ry="10"></ellipse><ellipse cx="155" cy="262" fill="#f48b9d" opacity=".75" rx="13" ry="7"></ellipse><ellipse cx="249" cy="262" fill="#f48b9d" opacity=".75" rx="13" ry="7"></ellipse><path d="M188 260Q202 277 218 260" fill="none" stroke="#49344f" stroke-linecap="round" stroke-width="5"></path></g>
+<path d="M119 235Q95 220 88 236" fill="none" stroke="#ffba7e" stroke-linecap="round" stroke-width="12"></path><path d="M283 235Q306 220 318 236" fill="none" stroke="#ffba7e" stroke-linecap="round" stroke-width="12"></path>
+<g fill="#fff"><path d="M78 116l7 16 17 6-17 7-7 16-7-16-17-7 17-6z"></path><path d="M322 91l5 11 12 5-12 4-5 12-5-12-12-4 12-5z"></path></g><path d="M307 173l6 13 14 5-14 6-6 13-5-13-14-6 14-5z" fill="#f9c66c"></path><circle cx="92" cy="202" fill="#b3dcbc" r="8"></circle><circle cx="299" cy="54" fill="#ffb8cc" r="9"></circle>
+</svg>
+<div class="art-label tag-top">♡ MEET MY SPRING!</div><div class="art-label tag-bottom">m · k · A · T  ✦</div>
+<span aria-hidden="true" class="pixel-shimmer pix1">✦</span><span aria-hidden="true" class="pixel-shimmer pix2">✧</span><span aria-hidden="true" class="pixel-shimmer pix3">✳</span></div>
+<div class="hero-status pill" id="headerStatus">● LAB ONLINE</div>
+</header>
+<main class="wrap"><section aria-label="Khám phá SHM Lab" class="lab-routecards"><button class="route-card pick-real" data-lab-nav="real" type="button"><span class="route-index">01 / LAB</span><span class="route-icon">📈</span><strong class="route-name">ĐO THỰC</strong><span class="route-desc">Nối ESP32 và đọc đồ thị dao động thời gian thực.</span><span class="route-arrow">KHÁM PHÁ  ↗</span></button><button class="route-card pick-sim" data-lab-nav="sim" type="button"><span class="route-index">02 / LAB</span><span class="route-icon">💗</span><strong class="route-name">MÔ PHỎNG</strong><span class="route-desc">Thay m, k, A và quan sát nhịp lò xo thật trực quan.</span><span class="route-arrow">KHÁM PHÁ  ↗</span></button><button class="route-card pick-practice" data-academy-nav="practice" type="button"><span class="route-index">03 / ACADEMY</span><span class="route-icon">📚</span><strong class="route-name">KHO TÀNG ĐỀ THI</strong><span class="route-desc">Trắc nghiệm, trả lời ngắn và ôn lại câu sai.</span><span class="route-arrow">LUYỆN TẬP ↗</span></button><button class="route-card pick-tutor" data-academy-nav="tutor" type="button"><span class="route-index">04 / SPRINGY AI</span><span class="route-icon">🌸</span><strong class="route-name">SPRINGY AI TUTOR</strong><span class="route-desc">Tải ảnh đề, nhận gợi ý và giải thích từng bước.</span><span class="route-arrow">HỌC CÙNG AI ↗</span></button></section>
+<div class="tabs" aria-hidden="true">
+<button class="tab active" id="modeReal">◉ 01 — THỰC NGHIỆM</button>
+<button class="tab" id="modeSim">✦ 02 — MÔ PHỎNG</button>
+</div>
+<div id="legacyLabArea"><div class="layout">
+<aside class="stack">
+<section class="panel" id="realControls">
+<h2 class="title">
+       Kết nối &amp; thu thập
+      </h2>
+<div class="field">
+<label>
+        Cổng thiết bị
+       </label>
+<div class="row">
+<button class="primary" id="connect">
+         Kết nối ESP32
+        </button>
+<button id="disconnect">
+         Ngắt
+        </button>
+</div>
+</div>
+<div class="status">
+<span class="dot" id="connDot">
+</span>
+<span id="connText">
+        Chưa kết nối • Web Serial dùng Chrome/Edge trên localhost hoặc HTTPS
+       </span>
+</div>
+<div class="divider">
+</div>
+<h3 class="title">
+       Điều khiển đo
+      </h3>
+<div class="btns">
+<button class="green" id="startReal">
+        ▶ Bắt đầu
+       </button>
+<button id="pauseReal">
+        Ⅱ Tạm dừng
+       </button>
+<button id="resumeReal">
+        ↻ Tiếp tục
+       </button>
+<button id="clearReal">
+        ⟲ Xóa mẫu
+       </button>
+</div>
+<button id="calibrate" style="width:100%">
+       ◎ Hiệu chuẩn d₀ (100 mẫu)
+      </button>
+<div class="field">
+<label>
+        Khoảng cách cân bằng d₀ (mm)
+       </label>
+<input id="d0" step="0.1" type="number" value="120"/>
+</div>
+<div class="divider">
+</div>
+<h3 class="title">
+       Nguồn thay thế / xuất dữ liệu
+      </h3>
+<div class="field">
+<label>
+        Nhập file CSV (timestamp_us,distance_mm,status)
+       </label>
+<div class="csv-picker">
+<input accept=".csv,.txt" aria-label="Chọn tệp CSV" class="csv-native-input" id="csvFile" type="file"/>
+<label class="csv-pick-button" for="csvFile">Chọn tệp CSV</label>
+<span class="csv-file-name" id="csvFileName" title="Chưa chọn tệp">Chưa chọn tệp</span>
+</div>
+</div>
+<div class="btns">
+<button id="exportCsv">
+        ↓ Xuất CSV
+       </button>
+<button id="exportPng">
+        ▧ Lưu ảnh PNG
+       </button>
+</div>
+<div class="btns">
+<button id="exportOriginal">
+        ↓ CSV dữ liệu gốc
+       </button>
+<button id="demoData">
+        ✦ Dữ liệu mẫu
+       </button>
+</div>
+<div class="btns">
+<button id="resetEsp">
+        ↻ Reset lượt ESP32
+       </button>
+<button id="getEspStatus">
+        ⓘ Trạng thái ESP32
+       </button>
+</div>
+<div class="divider">
+</div>
+<h3 class="title">
+       Xử lý tín hiệu
+      </h3>
+<div class="field">
+<label>
+        Bộ lọc
+       </label>
+<select id="filter">
+<option value="off">
+         Tắt lọc
+        </option>
+<option value="ema">
+         EMA nhẹ
+        </option>
+<option value="ma">
+         Trung bình trượt
+        </option>
+</select>
+</div>
+<div class="field">
+<label>
+        Mức lọc (mẫu MA hoặc α EMA)
+       </label>
+<input id="filterPower" max="10" min="2" type="range" value="4"/>
+<small class="fine" id="filterLabel">
+        Mức 4
+       </small>
+</div>
+<div class="field">
+<label>
+        Cửa sổ đồ thị
+       </label>
+<select id="window">
+<option value="10">
+         10 giây
+        </option>
+<option selected="" value="15">
+         15 giây
+        </option>
+<option value="20">
+         20 giây
+        </option>
+<option value="30">
+         30 giây
+        </option>
+</select>
+</div>
+<div class="switches">
+<label>
+<input checked="" id="showRaw" type="checkbox"/>
+        Dữ liệu thô
+       </label>
+<label>
+<input checked="" id="showFiltered" type="checkbox"/>
+        Dữ liệu đã lọc
+       </label>
+<label>
+<input checked="" id="showTheory" type="checkbox"/>
+        Đường lý thuyết (ước lượng)
+       </label>
+<label>
+<input checked="" id="markPeaks" type="checkbox"/>
+        Đánh dấu đỉnh/đáy
+       </label>
+<label>
+<input checked="" id="showEnvelope" type="checkbox"/>
+        Đường bao tắt dần
+       </label>
+</div>
+<p class="fine" style="margin-top:13px">
+       Chỉ các dòng có status = 0 mới được dùng để tính toán. Các trạng thái 1, 2, 3 là lỗi tương ứng firmware trước.
+      </p>
+</section>
+<section class="panel hidden" id="simControls">
+<h2 class="title">
+       Phòng mô phỏng tương tác
+      </h2>
+<p class="sub">
+       Thử thay đổi các tham số để quan sát dao động! Chuyển động được tính từ phương trình vật lý, không phải dữ liệu cảm biến.
+      </p>
+<div class="divider">
+</div>
+<div class="controlsGrid">
+<div class="field">
+<label>
+         Khối lượng
+         <b id="massV">
+          50 g
+         </b>
+</label>
+<input id="mass" max="150" min="30" step="5" type="range" value="50"/>
+</div>
+<div class="field">
+<label>
+         Độ cứng k
+         <b id="kV">
+          3 N/m
+         </b>
+</label>
+<input id="k" max="12" min="0.5" step="0.5" type="range" value="3"/>
+</div>
+<div class="field">
+<label>
+         Biên độ A
+         <b id="ampV">
+          18 mm
+         </b>
+</label>
+<input id="amp" max="40" min="2" step="1" type="range" value="18"/>
+</div>
+<div class="field">
+<label>
+         Tắt dần β
+         <b id="betaV">
+          0.03 s⁻¹
+         </b>
+</label>
+<input id="beta" max="0.2" min="0" step="0.01" type="range" value="0.03"/>
+</div>
+<div class="field">
+<label>
+         Tốc độ
+         <b id="speedV">
+          1.0×
+         </b>
+</label>
+<input id="speed" max="2" min="0.25" step="0.25" type="range" value="1"/>
+</div>
+<div class="field">
+<label>
+         Pha ban đầu
+         <b id="phaseV">
+          0 rad
+         </b>
+</label>
+<input id="phase" max="3.14" min="-3.14" step="0.1" type="range" value="0"/>
+</div>
+</div>
+<div class="btns">
+<button class="green" id="simPlay">
+        Ⅱ Tạm dừng
+       </button>
+<button id="simReset">
+        ⟲ Đặt lại
+       </button>
+</div>
+<div class="switches">
+<label>
+<input checked="" id="showVectors" type="checkbox"/>
+        Hiển thị li độ và trục cảm biến
+       </label>
+<label>
+<input checked="" id="showEq" type="checkbox"/>
+        Hiện công thức vật lý
+       </label>
+</div>
+<div class="divider">
+</div>
+<div class="note">
+       Chu kỳ mô phỏng:
+       <b>
+        T = 2π√(m/k)
+       </b>
+       . Độ tắt dần được dùng để giảm biên độ; đây là mô hình minh họa, không thay thế việc đo thực nghiệm.
+      </div>
+</section>
+<section class="panel">
+<h3 class="title">
+       Hướng dẫn nhanh
+      </h3>
+<div class="info" id="helpText">
+       ① Kết nối ESP32 qua USB.
+       <br/>
+       ② Giữ vật đứng yên và hiệu chuẩn.
+       <br/>
+       ③ Bấm Bắt đầu, thả nhẹ vật.
+       <br/>
+       ④ Xem biên độ, chu kỳ và xuất kết quả.
+       <br/>
+       Hoặc nhập CSV khi không có thiết bị.
+      </div>
+</section>
+</aside>
+<section class="stack">
+<div id="realView">
+<div class="metrics">
+<div class="metric">
+<label>
+         Khoảng cách d
+        </label>
+<b id="rDist">
+         —
+        </b>
+<small>
+         mm
+        </small>
+</div>
+<div class="metric">
+<label>
+         Li độ x
+        </label>
+<b class="cyan" id="rDisp">
+         —
+        </b>
+<small>
+         mm
+        </small>
+</div>
+<div class="metric">
+<label>
+         Biên độ A
+        </label>
+<b class="orange" id="rAmp">
+         —
+        </b>
+<small>
+         mm
+        </small>
+</div>
+<div class="metric">
+<label>
+         Chu kỳ T
+        </label>
+<b id="rPeriod">
+         —
+        </b>
+<small>
+         s
+        </small>
+</div>
+<div class="metric">
+<label>
+         Tần số f
+        </label>
+<b id="rFreq">
+         —
+        </b>
+<small>
+         Hz
+        </small>
+</div>
+<div class="metric">
+<label>
+         Tần số góc ω
+        </label>
+<b id="rOmega">
+         —
+        </b>
+<small>
+         rad/s
+        </small>
+</div>
+</div>
+<div class="panel">
+<h2 class="title">
+        Đồ thị li độ theo thời gian
+        <span class="badge">
+         DỮ LIỆU THỰC
+        </span>
+</h2>
+<div class="graphLegend">
+<span>
+<i class="key raw">
+</i>
+         Thô
+        </span>
+<span>
+<i class="key">
+</i>
+         Đã lọc
+        </span>
+<span>
+<i class="key fit">
+</i>
+         Lý thuyết ước lượng
+        </span>
+</div>
+<canvas class="chart" id="realChart">
+</canvas>
+<div class="row" style="margin-top:12px">
+<span class="status" id="sampleStatus">
+         0 mẫu • chưa có dữ liệu
+        </span>
+<span class="status" id="quality">
+         Đang chờ tín hiệu
+        </span>
+</div>
+</div>
+<div class="lower">
+<div class="panel">
+<h3 class="title">
+         Phân tích dao động
+        </h3>
+<div class="info" id="analysis">
+         Chưa đủ dữ liệu để xác định cực đại và chu kỳ.
+        </div>
+</div>
+<div class="panel">
+<h3 class="title">
+         Phương trình và cảnh báo
+        </h3>
+<div class="info" id="equation">
+         x(t) = A cos(ωt + φ) (mô hình tham chiếu)
+        </div>
+<div class="fine" id="warnings" style="margin-top:12px">
+         Không tự kết luận mức chính xác khi chưa kiểm chứng với phép đo độc lập.
+        </div>
+</div>
+</div>
+</div>
+<div class="hidden" id="simView">
+<div class="metrics">
+<div class="metric">
+<label>
+         Li độ x
+        </label>
+<b class="cyan" id="sDisp">
+         —
+        </b>
+<small>
+         mm
+        </small>
+</div>
+<div class="metric">
+<label>
+         Biên độ A₀
+        </label>
+<b class="orange" id="sAmp">
+         18
+        </b>
+<small>
+         mm
+        </small>
+</div>
+<div class="metric">
+<label>
+         Chu kỳ T
+        </label>
+<b id="sPeriod">
+         —
+        </b>
+<small>
+         s
+        </small>
+</div>
+<div class="metric">
+<label>
+         Tần số f
+        </label>
+<b id="sFreq">
+         —
+        </b>
+<small>
+         Hz
+        </small>
+</div>
+<div class="metric">
+<label>
+         Vận tốc v
+        </label>
+<b id="sVel">
+         —
+        </b>
+<small>
+         mm/s
+        </small>
+</div>
+<div class="metric">
+<label>
+         Gia tốc a
+        </label>
+<b id="sAccel">
+         —
+        </b>
+<small>
+         mm/s²
+        </small>
+</div>
+</div>
+<div class="simGrid">
+<section class="panel">
+<h2 class="title">
+         Minh họa hệ lò xo – vật nặng
+        </h2>
+<div class="apparatus">
+<svg aria-label="Mô hình lò xo vật nặng và cảm biến hướng lên" role="img" viewbox="0 0 560 510" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="metal" x1="0" x2="1">
+<stop stop-color="#85617a">
+</stop>
+<stop offset=".42" stop-color="#ffe5f0">
+</stop>
+<stop offset=".7" stop-color="#c4a1bb">
+</stop>
+<stop offset="1" stop-color="#70445f">
+</stop>
+</lineargradient>
+<lineargradient id="blue" x1="0" x2="1">
+<stop stop-color="#c82e85">
+</stop>
+<stop offset=".5" stop-color="#fa5aaf">
+</stop>
+<stop offset="1" stop-color="#702752">
+</stop>
+</lineargradient>
+<lineargradient id="massG" x1="0" x2="1">
+<stop stop-color="#a7879f">
+</stop>
+<stop offset=".4" stop-color="#fff0f7">
+</stop>
+<stop offset="1" stop-color="#b393a9">
+</stop>
+</lineargradient>
+</defs>
+<ellipse cx="280" cy="480" fill="#000" opacity=".22" rx="240" ry="14">
+</ellipse>
+<path d="M64 438H494L518 472H40Z" fill="#09060d" stroke="#78506d" stroke-width="3">
+</path>
+<path d="M88 40H112V436H88Z M443 40H467V436H443Z M100 40H455V57H100Z" fill="url(#metal)" stroke="#e6bfd5" stroke-width="1">
+</path>
+<g fill="url(#blue)" stroke="#7b2e59" stroke-width="2">
+<rect height="45" rx="7" width="52" x="74" y="24">
+</rect>
+<rect height="45" rx="7" width="52" x="428" y="24">
+</rect>
+<rect height="36" rx="6" width="57" x="72" y="409">
+</rect>
+<rect height="36" rx="6" width="58" x="427" y="409">
+</rect>
+<rect height="28" rx="5" width="42" x="258" y="40">
+</rect>
+<rect height="45" rx="4" width="72" x="246" y="409">
+</rect>
+</g>
+<path d="M386 90V397" stroke="#edd3e2" stroke-width="17">
+</path>
+<path d="M386 90V397" stroke="#d2b3c4" stroke-width="1">
+</path>
+<g id="ticks" stroke="#754966">
+</g>
+<line stroke="#f2d4e3" stroke-width="4" x1="279" x2="279" y1="68" y2="89">
+</line>
+<path d="" fill="none" id="spring" stroke="#ebccdc" stroke-linecap="round" stroke-width="4">
+</path>
+<path d="" id="massLink" stroke="#ebccdc" stroke-width="4">
+</path>
+<rect fill="url(#massG)" height="43" id="weight" rx="8" stroke="#fff" stroke-width="1.5" width="38" x="260" y="265">
+</rect>
+<rect fill="#1a101e" height="11" rx="3" stroke="#ff88c7" stroke-width="2" width="52" x="254" y="401">
+</rect>
+<circle cx="280" cy="406" fill="#100b15" r="5" stroke="#ff88c7" stroke-width="2">
+</circle>
+<path d="M280 400 L280 316" id="beam" opacity=".75" stroke="#ff69bd" stroke-dasharray="6 5" stroke-width="2">
+</path>
+<g id="arrowGroup">
+<line id="arrowLine" stroke="#ffb86a" stroke-width="2" x1="328" x2="328" y1="316" y2="402">
+</line>
+<path d="" fill="none" id="arrowTop" stroke="#ffb86a" stroke-width="2">
+</path>
+<path d="M322 396L328 404L334 396" fill="none" stroke="#ffb86a" stroke-width="2">
+</path>
+</g>
+<rect fill="#d93c99" height="36" rx="5" stroke="#df69ff" width="86" x="143" y="430">
+</rect>
+<rect fill="#1b1020" height="25" rx="3" width="64" x="154" y="435">
+</rect>
+<text fill="#f8b1d5" font-size="10" text-anchor="middle" x="185" y="451">
+           ESP32
+          </text>
+<text fill="#66506f" font-size="12" x="296" y="29">
+           Giá treo kim loại
+          </text>
+<text fill="#ffa7d6" font-size="12" x="316" y="258">
+           Lò xo
+          </text>
+<text fill="#564466" font-size="13" id="massLabel" x="322" y="294">
+           Vật nặng
+          </text>
+<text fill="#ff69bd" font-size="11" x="335" y="420">
+           VL53L0X ↑
+          </text>
+<text fill="#66506f" font-size="12" x="410" y="148">
+           Thước mm
+          </text>
+<text fill="#ffd39a" font-size="13" id="xTag" x="340" y="365">
+           x = 0 mm
+          </text>
+</svg>
+</div>
+<p class="fine" style="margin-top:9px">
+         Cảm biến nằm thẳng dưới vật và hướng lên. Mô hình kéo giãn theo li độ để dễ quan sát, không biểu diễn tỷ lệ kích thước chuẩn chế tạo.
+        </p>
+</section>
+<div class="stack">
+<section class="panel">
+<h2 class="title">
+          Phương trình
+         </h2>
+<div aria-label="Phương trình li độ" class="info math-display" id="simEquation">
+</div>
+<div class="divider">
+</div>
+<div class="info math-context" id="simContext">
+</div>
+</section>
+<section class="panel">
+<h2 class="title">
+          Thí nghiệm trên lớp
+         </h2>
+<div class="btns">
+<button id="simCsv">
+           ↓ CSV mô phỏng
+          </button>
+<button id="simPng">
+           ▧ Ảnh đồ thị
+          </button>
+</div>
+<div class="note">
+          Thử tăng khối lượng m hoặc giảm độ cứng k: điều gì xảy ra với T? Khi β tăng, biên độ giảm như thế nào?
+         </div>
+</section>
+</div>
+</div>
+<div class="panel" style="margin-top:14px">
+<h2 class="title">
+        Đồ thị mô phỏng lý thuyết
+       </h2>
+<canvas class="chart" id="simChart" style="height:270px">
+</canvas>
+<div class="fine">
+        Đường màu hồng biểu diễn x(t); trục thời gian tính bằng giây. Đây là dữ liệu mô phỏng, không phải dữ liệu thực nghiệm.
+       </div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<section id="academyPractice" class="academy-page" hidden>
+ <div class="academy-heading"><div><span class="academy-kicker">✦ 03 / ACADEMY</span><h2>Kho tàng đề thi <span>✿</span></h2><p>Luyện chuyên đề Dao động điều hòa • Trắc nghiệm & Trả lời ngắn • Ôn tập câu sai</p></div><div class="academy-deco">✦ 〰 ✿</div></div>
+ <div class="academy-panel"><div class="academy-filters"><label>Chuyên đề<select id="practiceTopic"><option value="all">Tất cả chuyên đề</option><option value="spring">Con lắc lò xo</option><option value="kinematics">Li độ · vận tốc · gia tốc</option><option value="energy">Năng lượng</option><option value="period">Chu kỳ · tần số</option><option value="damping">Dao động tắt dần</option></select></label><label>Hình thức<select id="practiceType"><option value="all">Cả hai dạng</option><option value="mcq">Trắc nghiệm</option><option value="short">Trả lời ngắn</option></select></label><label>Độ khó<select id="practiceDifficulty"><option value="all">Tất cả</option><option value="easy">Nhận biết</option><option value="medium">Thông hiểu</option><option value="hard">Vận dụng</option></select></label></div>
+ <div class="academy-actions"><button id="practiceStart" class="academy-pink">✦ Bắt đầu đề 10 câu</button><button id="practiceWrong">↻ Ôn lại câu sai</button><button id="practiceReset">Xóa tiến độ</button><span id="practiceStats" class="academy-muted">Chưa có lượt làm bài</span></div></div>
+ <div id="practiceQuiz" class="academy-panel" hidden><div class="quiz-top"><span id="quizCount">Câu 1/10</span><span id="quizScore">Đúng: 0</span></div><div class="quiz-progress"><div id="quizProgressFill"></div></div><div class="quiz-meta" id="quizMeta"></div><h3 id="quizQuestion"></h3><div id="quizAnswers"></div><div id="quizFeedback" class="quiz-feedback" hidden></div><div class="academy-actions"><button id="quizCheck" class="academy-pink">Kiểm tra đáp án</button><button id="quizNext" hidden>Tiếp theo →</button><button id="quizShowHint">♡ Gợi ý</button><button id="quizEnd">Kết thúc</button></div></div>
+ <div class="academy-panel academy-empty" id="practiceWelcome"><div class="welcome-emoji">📖</div><h3>Mỗi bài giải được là một bước tiến!</h3><p>Chọn chuyên đề rồi bắt đầu. Hệ thống tự chấm, giải thích sau khi trả lời và lưu các câu sai ngay trên máy này.</p><p class="academy-muted">Ngân hàng đề ban đầu: <b id="bankCount"></b> câu có đáp án và lời giải kiểm chứng công thức.</p></div>
+</section>
+<section id="academyTutor" class="academy-page" hidden>
+ <div class="academy-heading"><div><span class="academy-kicker">✦ 04 / AI ACADEMY</span><h2>Springy AI <span>Tutor ♡</span></h2><p>Giải bài tập chuyên sâu · Giải thích bản chất · Học từng bước</p></div><div class="academy-deco">✿ ♡ ✦</div></div>
+ <div class="tutor-grid"><div class="academy-panel"><h3>Đưa đề bài cho Springy</h3><p class="academy-muted">Nhập văn bản hoặc tải ảnh đề bài. Nếu ảnh mờ, AI sẽ yêu cầu làm rõ thay vì tự đoán.</p><label class="academy-field">Đề bài<textarea id="tutorProblem" rows="7" placeholder="Ví dụ: Con lắc lò xo có m = 200 g và k = 50 N/m. Tính chu kỳ T và giải thích vì sao khi tăng m thì T tăng."></textarea></label><label class="upload-card" for="tutorImage">📷 Tải ảnh đề bài <small>JPG / PNG / WEBP · tối đa 4 MB</small><input id="tutorImage" type="file" accept="image/jpeg,image/png,image/webp" /></label><div id="tutorFileName" class="academy-muted"></div><label class="academy-field">Chế độ học<select id="tutorMode"><option value="guide">Gợi ý từng bước (không lộ đáp án ngay)</option><option value="full">Giải chi tiết và giải thích</option><option value="check">Kiểm tra bài làm của em</option></select></label><button id="tutorAsk" class="academy-pink tutor-submit">✦ Hỏi Springy</button><div id="tutorStatus" class="academy-muted">Có thể giải bài dạng cơ bản khi offline. Để AI xử lý ảnh và bài khó, chạy server và thêm API key.</div></div><div class="academy-panel tutor-response"><div class="tutor-bot-head"><div class="tutor-face">◡</div><div><b>Springy đang lắng nghe!</b><p class="academy-muted">Lời giải có cấu trúc, đơn vị và các bước kiểm tra</p></div></div><div id="tutorOutput" class="tutor-output"><div class="academy-empty"><div class="welcome-emoji">🌷</div><p>Nhập một câu hỏi về dao động điều hòa để học cùng Springy nhé!</p></div></div><div class="academy-actions"><button id="tutorSimulate" disabled>〰 Mô phỏng bài này</button><button id="tutorClear">↻ Xóa hội thoại</button></div></div></div>
+ <div class="academy-panel tutor-footnote"><b>✦ AI được chuyên biệt hóa như thế nào?</b> Springy dùng bộ kiến thức chuyên đề và các công thức vật lý để tạo câu trả lời có kiểm tra. Phiên bản này chưa fine-tune trọng số mô hình; kết quả AI cần được học sinh kiểm tra trước khi sử dụng. Không dùng AI để tạo số liệu thực nghiệm.</div>
+</section>
+</main>
+<footer>
+<strong>✿ SHM Lab</strong> · Học vật lý bằng khám phá, đo lường và mô phỏng. <span>Dữ liệu thực và dữ liệu mô phỏng được phân biệt · Web Serial cần Chrome/Edge + HTTPS/localhost.</span>
+<span class="footer-brand-note">✿ Made for curious minds</span></footer>
+<script>
+   document.getElementById("heroStart").addEventListener("click", () => {document.getElementById("modeReal").click(); document.querySelector(".layout").scrollIntoView({behavior:"smooth",block:"start"});});
+   document.getElementById("heroSim").addEventListener("click", () => {document.getElementById("modeSim").click(); document.querySelector(".layout").scrollIntoView({behavior:"smooth",block:"start"});});
+  </script>
+<!-- MathJax: render LaTeX as mathematical notation in the simulation panel. -->
+<script>
+   window.MathJax = {
+    tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]},
+    svg: {fontCache: 'global'},
+    startup: {typeset: false}
+   };
+  </script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script defer="" src="academy.js"></script>
+<script defer="" src="script.js">
+</script>
+</body>
+</html>
