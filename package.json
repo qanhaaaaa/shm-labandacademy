@@ -1,1 +1,12 @@
-{"name":"shm-lab-academy","private":true,"version":"2.0.0","description":"SHM Lab & Academy: ESP32 experiments, simulation, practice and AI tutoring","scripts":{"start":"node server.js"},"engines":{"node":">=20"}}
+{
+  "name": "shm-lab-academy",
+  "private": true,
+  "version": "2.1.0",
+  "description": "SHM Lab & Academy Vercel static frontend + serverless AI tutor",
+  "scripts": {
+    "start": "node local/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
